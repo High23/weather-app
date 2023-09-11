@@ -9,6 +9,7 @@ searchLocationBTN.addEventListener('click' , () => {
     weatherData.then(weather => {
         loadCurrentWeather(weather);
         load3DayForecast(weather.forecast);
+        loadHourlyForecast(weather);
     });
 });
 
@@ -66,3 +67,37 @@ function load3DayForecast(forecast) {
     dayAfterTmrwIconDiv.src = forecast.forecastday[2].day.condition.icon;
     dayAfterTmrwConditionDiv.textContent = forecast.forecastday[2].day.condition.text;
 }
+
+function loadHourlyForecast(weatherData) {
+    const allHourDetailsDivs = document.getElementsByClassName('hour-details');
+    const currentHourForLocation = format(new Date(weatherData.location.localtime), 'H');
+    weatherData.forecast.forecastday[0].hour.splice(0, currentHourForLocation);
+
+    const currentDayHours = weatherData.forecast.forecastday[0].hour;
+    currentDayHours.forEach((hour, index) => {
+        const hourIMG = allHourDetailsDivs[index].childNodes[3];
+        const hourTempSpan = allHourDetailsDivs[index].childNodes[5];
+        if (index === 0) {
+            hourIMG.src = hour.condition.icon;
+            hourTempSpan.textContent = `${hour.temp_f}\u00B0`;
+        } else {
+            const hourSpan = allHourDetailsDivs[index].childNodes[1];
+            hourSpan.textContent = format(new Date(hour.time), 'h aa');
+            hourIMG.src = hour.condition.icon;
+            hourTempSpan.textContent = `${hour.temp_f}\u00B0`;
+        }
+    });
+    
+    if (!(currentDayHours.length === 24)) {
+        const nextDayHours = weatherData.forecast.forecastday[1].hour.splice(0, currentHourForLocation);
+        for (let i = 0; i < nextDayHours.length; i++) {
+            const hourSpan = allHourDetailsDivs[currentDayHours.length + i].childNodes[1];
+            const hourIMG = allHourDetailsDivs[currentDayHours.length + i].childNodes[3];
+            const hourTempSpan = allHourDetailsDivs[currentDayHours.length + i].childNodes[5];
+            hourSpan.textContent = format(new Date(nextDayHours[i].time), 'K aa');
+            hourIMG.src = nextDayHours[i].condition.icon;
+            hourTempSpan.textContent = `${nextDayHours[i].temp_f}\u00B0`;
+        }
+    } 
+} 
+
