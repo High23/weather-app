@@ -8,6 +8,7 @@ searchLocationBTN.addEventListener('click' , () => {
     const weatherData = getForecast(location);
     weatherData.then(weather => {
         loadCurrentWeather(weather);
+        load3DayForecast(weather.forecast);
     });
 });
 
@@ -35,4 +36,33 @@ function loadCurrentWeather(weather) {
 
     const chanceOfRain = document.getElementById('chance-of-rain');
     chanceOfRain.innerHTML = `<img src="../src/umbrella.png" alt="Umbrella icon" class="icon">${weather.forecast.forecastday[0].day.daily_chance_of_rain}`;
+}
+
+function load3DayForecast(forecast) {
+    const todayDateDiv = document.querySelector('.today > div:nth-child(2)');
+    const todayIconDiv = document.querySelector('.today > img');
+    const todayConditionDiv = document.querySelector('.today > div:last-child');
+
+    todayDateDiv.textContent = format(new Date(forecast.forecastday[0].date), 'MM/dd');
+    todayIconDiv.src = forecast.forecastday[0].day.condition.icon;
+    todayConditionDiv.textContent = forecast.forecastday[0].day.condition.text;
+    const tomorrowDayName = document.querySelector('.tomorrow > div:nth-child(1)');
+    const tomorrowDateDiv = document.querySelector('.tomorrow > div:nth-child(2)');
+    const tomorrowIconDiv = document.querySelector('.tomorrow > img');
+    const tomorrowConditionDiv = document.querySelector('.tomorrow > div:last-child');
+
+    tomorrowDayName.textContent = format(new Date(forecast.forecastday[1].date), 'eee');
+    tomorrowDateDiv.textContent = format(new Date(forecast.forecastday[1].date), 'MM/dd');
+    tomorrowIconDiv.src = forecast.forecastday[1].day.condition.icon;
+    tomorrowConditionDiv.textContent = forecast.forecastday[1].day.condition.text;
+
+    const dayAfterTmrwDayName = document.querySelector('.day-after-tomorrow > div:nth-child(1)');
+    const dayAfterTmrwDateDiv = document.querySelector('.day-after-tomorrow > div:nth-child(2)');
+    const dayAfterTmrwIconDiv = document.querySelector('.day-after-tomorrow > img');
+    const dayAfterTmrwConditionDiv = document.querySelector('.day-after-tomorrow > div:last-child');
+
+    dayAfterTmrwDayName.textContent = format(new Date(forecast.forecastday[2].date), 'eee');
+    dayAfterTmrwDateDiv.textContent = format(new Date(forecast.forecastday[2].date), 'MM/dd');
+    dayAfterTmrwIconDiv.src = forecast.forecastday[2].day.condition.icon;
+    dayAfterTmrwConditionDiv.textContent = forecast.forecastday[2].day.condition.text;
 }
