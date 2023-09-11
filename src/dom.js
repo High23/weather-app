@@ -101,3 +101,41 @@ function loadHourlyForecast(weatherData) {
     } 
 } 
 
+
+const hoursDiv = document.querySelector('.hours');
+const dots = document.querySelectorAll('.slider > .dots');
+const forwardBTN = document.getElementById('forward');
+forwardBTN.addEventListener('click', () => {
+    if ( hoursDiv.classList[2] === 'forward2' ) {
+        hoursDiv.classList.remove('forward');
+        hoursDiv.classList.remove('forward2');
+        dots[2].classList.remove('filled');
+        dots[0].classList.add('filled');
+    } else if (hoursDiv.classList[1] === 'forward') {
+        hoursDiv.classList.add('forward2');
+        dots[1].classList.remove('filled');
+        dots[2].classList.add('filled');
+    } else {
+        hoursDiv.classList.add('forward');
+        dots[0].classList.remove('filled');
+        dots[1].classList.add('filled');
+    }
+});
+
+const backBTN = document.getElementById('back');
+backBTN.addEventListener('click', () => {
+    if (hoursDiv.classList[2] === 'forward2') {
+        hoursDiv.classList.remove('forward2');
+        dots[2].classList.remove('filled');
+        dots[1].classList.add('filled');
+    } else if (hoursDiv.classList[1] === 'forward') {
+        hoursDiv.classList.remove('forward');
+        dots[1].classList.remove('filled');
+        dots[0].classList.add('filled');
+    } else {
+        hoursDiv.classList.add('forward');
+        hoursDiv.classList.add('forward2');
+        dots[0].classList.remove('filled');
+        dots[2].classList.add('filled');
+    }
+});
