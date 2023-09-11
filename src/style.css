@@ -1,0 +1,150 @@
+html, body, .content {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.content {
+    display: grid;
+    grid-template-rows: auto 1fr;
+}
+
+.header { 
+    display: flex;
+    justify-content: center;
+}
+
+.body {
+    display: grid;
+}
+
+.days-forecast {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    grid-template-rows: auto 1fr;
+}
+
+.days-forecast > h1 {
+    grid-column: 1/4;
+}
+
+.hourly-forecast, .days-forecast, .weather-info {
+    padding-left: 100px;
+    padding-right: 50px;
+}
+
+.details {
+    padding-left: 15px;
+    font-size: 1.5rem;
+}
+
+#location > div {
+    font-weight: 400;
+    font-size: 0.8rem;
+}
+
+#temp {
+    font-size: 5rem;
+}
+
+.icon {
+    height: 22px;
+}
+
+.details > div {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+div.high-low {
+    gap: 20px;
+}
+
+.hours {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: repeat(3, clamp(800px, 100%, 1400px));
+    width: clamp(800px, 100%, 1400px);
+    overflow: hidden;
+    position: relative;
+}
+
+.hourly-forecast {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+
+.hour-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.condition-icon {
+    width: 34px;
+}
+
+.slider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.filled {
+    background-color: #000;
+    transition: all 1s ease-in-out;
+}
+
+.now-hour7, 
+.hour8-hour15, 
+.hour16-hour23 {
+    display: flex;
+    justify-content: space-around;
+}
+
+.now-hour7 {
+    transition: transform 1s ease-in-out;
+}
+
+.hour8-hour15 {
+    transition: transform 1s ease-in-out;
+}
+
+.hour16-hour23 {
+    transition: transform 1s ease-in-out;
+}
+
+.hours.forward > .now-hour7 {
+    transform: translateX(-100%);
+}
+
+.hours.forward > .hour8-hour15 {
+    transform: translateX(-100%);
+}
+
+.hours.forward > .hour16-hour23 {
+    transform: translateX(-100%);
+}
+
+.hours.forward.forward2 > .now-hour7 {
+    transform: translateX(-200%);
+}
+
+.hours.forward.forward2 > .hour8-hour15 {
+    transform: translateX(-200%);
+}
+
+.hours.forward.forward2 > .hour16-hour23 {
+    transform: translateX(-200%);
+}
+
+.dots {
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border: 1px solid black;
+    border-radius: 50%;
+}
