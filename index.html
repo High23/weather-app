@@ -4,10 +4,195 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Weather app</title>
-        <link rel="stylesheet" href="style.css" />
-        <script src="index.js"></script>
+        <link rel="stylesheet" href="../src/style.css"/>
+        <script src="main.js" type="module"></script>
     </head>
     <body>
-        
+        <div class="content">
+            <div class="header">
+                <form action="">
+                    <label for="location-input">Search the weather for a location: </label>
+                    <input type="search" name="location" id="location-input">
+                    <button type="button" id="search-location">Search</button>
+                </form>
+            </div>
+            <div class="body">
+                <div class="weather-info">
+                    <h1 id="location">
+                        <span></span>
+                        <div></div>
+                    </h1>
+                    <div class="details">
+                        <div id="temp"></div>
+                        <div id="condition"></div>
+                        <div class="high-low">
+                            <span id="highest-temp"></span>
+                            <span id="lowest-temp"></span>
+                        </div>
+                        <div id="feels-like"></div>
+                        <div id="chance-of-rain"></div>
+                    </div>
+                </div>
+                <div class="hourly-forecast">
+                    <h1>Hourly forecast</h1>
+                    <div class="hours">
+                        <div class="now-hour7">
+                            <div class="hour-details" data-hour="0">
+                                <span>Now</span>
+                                <img src="" alt="">
+                                <span></span>
+                            </div>
+                            <div class="hour-details" data-hour="1">
+                                <span></span>
+                                <img src="" alt="">
+                                <span></span>
+                            </div>
+                            <div class="hour-details" data-hour="2">
+                                <span></span>
+                                <img src="" alt="">
+                                <span></span>
+                            </div>
+                            <div class="hour-details" data-hour="3">
+                                <span></span>
+                                <img src="" alt="">
+                                <span></span>
+                            </div>
+                            <div class="hour-details" data-hour="4">
+                                <span></span>
+                                <img src="" alt="">
+                                <span></span>
+                            </div>
+                            <div class="hour-details" data-hour="5">
+                                <span></span>
+                                <img src="" alt="">
+                                <span></span>
+                            </div>
+                            <div class="hour-details" data-hour="6">
+                                <span></span>
+                                <img src="" alt="">
+                                <span></span>
+                            </div>
+                            <div class="hour-details" data-hour="7">
+                                <span></span>
+                                <img src="" alt="">
+                                <span></span>
+                            </div>
+                        </div>
+                        <div class="hour8-hour15">
+                            <div class="hour-details" data-hour="8">
+                                <span></span>
+                                <img src="" alt="">
+                                <span></span>
+                            </div>
+                            <div class="hour-details" data-hour="9">
+                                <span></span>
+                                <img src="" alt="">
+                                <span></span>
+                            </div>
+                            <div class="hour-details" data-hour="10">
+                                <span></span>
+                                <img src="" alt="">
+                                <span></span>
+                            </div>
+                            <div class="hour-details" data-hour="11">
+                                <span></span>
+                                <img src="" alt="">
+                                <span></span>
+                            </div>
+                            <div class="hour-details" data-hour="12">
+                                <span></span>
+                                <img src="" alt="">
+                                <span></span>
+                            </div>
+                            <div class="hour-details" data-hour="13">
+                                <span></span>
+                                <img src="" alt="">
+                                <span></span>
+                            </div>
+                            <div class="hour-details" data-hour="14">
+                                <span></span>
+                                <img src="" alt="">
+                                <span></span>
+                            </div>
+                            <div class="hour-details" data-hour="15">
+                                <span></span>
+                                <img src="" alt="">
+                                <span></span>
+                            </div>
+                        </div>
+                        <div class="hour16-hour23">
+                            <div class="hour-details" data-hour="16">
+                                <span></span>
+                                <img src="" alt="">
+                                <span></span>
+                            </div>
+                            <div class="hour-details" data-hour="17">
+                                <span></span>
+                                <img src="" alt="">
+                                <span></span>
+                            </div>
+                            <div class="hour-details" data-hour="18">
+                                <span></span>
+                                <img src="" alt="">
+                                <span></span>
+                            </div>
+                            <div class="hour-details" data-hour="19">
+                                <span></span>
+                                <img src="" alt="">
+                                <span></span>
+                            </div>
+                            <div class="hour-details" data-hour="20">
+                                <span></span>
+                                <img src="" alt="">
+                                <span></span>
+                            </div>
+                            <div class="hour-details" data-hour="21">
+                                <span></span>
+                                <img src="" alt="">
+                                <span></span>
+                            </div>
+                            <div class="hour-details" data-hour="22">
+                                <span></span>
+                                <img src="" alt="">
+                                <span></span>
+                            </div>
+                            <div class="hour-details" data-hour="23">
+                                <span></span>
+                                <img src="" alt="">
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slider">
+                        <button type="button" id="back"><</button>
+                        <span class="dots filled"></span>
+                        <span class="dots"></span>
+                        <span class="dots"></span>
+                        <button type="button" id="forward">></button>
+                    </div>
+                </div>
+                <div class="days-forecast">
+                    <h1>3 day forecast</h1>
+                    <div class="today">
+                        <div></div>
+                        <div></div>
+                        <img src="" alt="Today's condition icon">
+                        <div></div>
+                    </div>
+                    <div class="tomorrow">
+                        <div></div>
+                        <div></div>
+                        <img src="" alt="Tomorrow's condition icon">
+                        <div></div>
+                    </div>
+                    <div class="day-after-tomorrow">
+                        <div></div>
+                        <div></div>
+                        <img src="" alt="Day after tomorrow condition icon">
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
