@@ -1,4 +1,4 @@
-import {loadCurrentWeather, load3DayForecast, loadHourlyForecast, loadBackgroundImage} from './dom'
+import {loadCurrentWeather, load3DayForecast, loadHourlyForecast, loadBackgroundImage} from './dom';
 
 export { getForecast, onLoad };
 // onLoad
