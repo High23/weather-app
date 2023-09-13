@@ -288,3 +288,18 @@ input[type=search]:hover  {
 #search-location:active {
     background-color: #2563eb;
 }
+
+
+#fahrenheit, #celsius {
+    border-radius: 6px;
+    padding: 3px 8px;
+    border: none;
+}
+
+#fahrenheit {
+    background-color: #fdba74;
+}
+
+#celsius {
+    background-color: #6ee7b7;
+}
