@@ -33,23 +33,23 @@ function loadCurrentWeather(weather, degree='f', windType='mph') {
 
     const highestTempSpan = document.getElementById('highest-temp');
     const maxTemp = `maxtemp_${degree}`;
-    highestTempSpan.innerHTML = `<img src="../src/icons/arrow-up-thin.svg" alt="Arrow pointing up">${weather.forecast.forecastday[0].day[[maxTemp]]}\u00B0${degree.toUpperCase()}`;
+    highestTempSpan.innerHTML = `<img src="./icons/arrow-up-thin.svg" alt="Arrow pointing up">${weather.forecast.forecastday[0].day[[maxTemp]]}\u00B0${degree.toUpperCase()}`;
     
     const lowestTempSpan = document.getElementById('lowest-temp');
     const minTemp = `mintemp_${degree}`;
-    lowestTempSpan.innerHTML = `<img src="../src/icons/arrow-down-thin.svg" alt="Arrow pointing down">${weather.forecast.forecastday[0].day[[minTemp]]}\u00B0${degree.toUpperCase()}`;
+    lowestTempSpan.innerHTML = `<img src="./icons/arrow-down-thin.svg" alt="Arrow pointing down">${weather.forecast.forecastday[0].day[[minTemp]]}\u00B0${degree.toUpperCase()}`;
 
     const feelsLikeDiv = document.getElementById('feels-like');
     const feelsLikeTemp = `feelslike_${degree}`;
-    feelsLikeDiv.innerHTML = `<img src="../src/icons/human-handsup.svg" alt="Human with hands up" class="icon">${weather.current[[feelsLikeTemp]]}\u00B0`;
+    feelsLikeDiv.innerHTML = `<img src="./icons/human-handsup.svg" alt="Human with hands up" class="icon">${weather.current[[feelsLikeTemp]]}\u00B0`;
 
     const currentHourForLocation = format(new Date(weather.location.localtime), 'H');
     const chanceOfRain = document.getElementById('chance-of-rain');
-    chanceOfRain.innerHTML = `<img src="../src/icons/umbrella.svg" alt="Umbrella icon" class="icon">${weather.forecast.forecastday[0].hour[currentHourForLocation].chance_of_rain}%`;
+    chanceOfRain.innerHTML = `<img src="./icons/umbrella.svg" alt="Umbrella icon" class="icon">${weather.forecast.forecastday[0].hour[currentHourForLocation].chance_of_rain}%`;
 
     const windDiv = document.getElementById('wind');
     const wind = `wind_${windType}`;
-    windDiv.innerHTML = `<img src="../src/icons/weather-windy.svg" alt="Umbrella icon" class="icon">${weather.current[[wind]]}${windType.toUpperCase()}`;
+    windDiv.innerHTML = `<img src="./icons/weather-windy.svg" alt="wind icon" class="icon">${weather.current[[wind]]}${windType.toUpperCase()}`;
 }
 
 function load3DayForecast(forecast) {
@@ -165,40 +165,40 @@ function loadBackgroundImage(currentWeather) {
     bodyDiv.style.backgroundSize = 'cover';
 
     if (conditionText === 'Sunny') {
-        bodyDiv.style.backgroundImage = 'url("../src/images/sunny.jpg")';
+        bodyDiv.style.backgroundImage = 'url("./images/sunny.jpg")';
         creditSpan.innerHTML = `Photo by 
         <a href="https://unsplash.com/@groovelanddesigns?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Grooveland Designs</a> 
         on <a href="https://unsplash.com/photos/zjoydJb17mE?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
         `;
     } else if (conditionText === 'Clear') {
-        bodyDiv.style.backgroundImage = 'url("../src/images/clear-night.jpg")';
+        bodyDiv.style.backgroundImage = 'url("./images/clear-night.jpg")';
         bodyDiv.style.color = 'white';
         creditSpan.innerHTML = `Photo by 
         <a href="https://unsplash.com/@nathananderson?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Nathan Anderson</a>
          on <a href="https://unsplash.com/photos/L95xDkSSuWw?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
         `;
     } else if (conditionText === 'Partly cloudy') {
-        bodyDiv.style.backgroundImage = 'url("../src/images/partly-cloudy.jpg")';
+        bodyDiv.style.backgroundImage = 'url("./images/partly-cloudy.jpg")';
         creditSpan.innerHTML = `Photo by 
         <a href="https://unsplash.com/@weilstyle?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Ethan Weil</a> 
         on <a href="https://unsplash.com/photos/VP4509rcTok?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
         `;
     } else if (conditionText === 'Cloudy' || conditionText === 'Overcast') {
-        bodyDiv.style.backgroundImage = 'url("../src/images/cloudy.jpg")';
+        bodyDiv.style.backgroundImage = 'url("./images/cloudy.jpg")';
         bodyDiv.style.color = 'white';
         creditSpan.innerHTML = `Photo by 
         <a href="https://unsplash.com/@riekefischer?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Henrieke Fischer</a> 
         on <a href="https://unsplash.com/photos/GCdigLv0h_U?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
         `;
     } else if (conditionText === 'Light rain' || conditionText === 'Moderate rain' || conditionText === 'Light rain shower' || conditionText === 'Patchy light rain with thunder') {
-        bodyDiv.style.backgroundImage = 'url("../src/images/rainy.jpg")';
+        bodyDiv.style.backgroundImage = 'url("./images/rainy.jpg")';
 
         creditSpan.innerHTML = `Photo by 
         <a href="https://unsplash.com/@anant90?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Anant Jain</a> 
         on <a href="https://unsplash.com/photos/Bu1zj2WbjHE?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
         `;
     } else if ( conditionText === 'Heavy rain' || conditionText === 'Moderate or heavy rain shower' || conditionText === 'Moderate or heavy rain with thunder') {
-        bodyDiv.style.backgroundImage = 'url("../src/images/rainy-night.jpg")';
+        bodyDiv.style.backgroundImage = 'url("./images/rainy-night.jpg")';
         bodyDiv.style.color = 'white';
         creditSpan.innerHTML = `Photo by 
         <a href="https://unsplash.com/@wackeltin_meem?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Valentin Müller</a> 
