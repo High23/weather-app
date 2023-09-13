@@ -3,7 +3,7 @@ import {loadCurrentWeather, load3DayForecast, loadHourlyForecast, loadBackground
 export { getForecast, onLoad };
 // onLoad
 async function getForecast(location) {
-    const response = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=668f1b7cfe154b44b6f30756230609&q=${location}&days=3`, {mode: 'cors'});
+    const response = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=668f1b7cfe154b44b6f30756230609&q=${location}&days=3`);
     const data = await response.json();
     return data;
 }
