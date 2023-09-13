@@ -1,4 +1,6 @@
-// import { onLoad } from './app';
+import { onLoad } from './app';
 import './dom';
 
-// onLoad();
+window.onload = () => {
+    onLoad();
+};
