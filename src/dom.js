@@ -207,8 +207,6 @@ function loadBackgroundImage(currentWeather) {
     }
 }
 
-
-
 const fahrenheitBTN = document.getElementById('fahrenheit');
 fahrenheitBTN.addEventListener('click', () => {
     const location = document.querySelector('#location > span').dataset.location;
@@ -218,7 +216,6 @@ fahrenheitBTN.addEventListener('click', () => {
         loadHourlyForecast(weather);
     });
 });
-
 
 const celsiusBTN = document.getElementById('celsius');
 celsiusBTN.addEventListener('click', () => {
