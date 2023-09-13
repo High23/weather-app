@@ -15,6 +15,10 @@
                     <input type="search" name="location" id="location-input">
                     <button type="button" id="search-location">Search</button>
                 </form>
+                <div class="type">
+                    <button class="fahrenheit">F</button>
+                    <button class="celsius">C</button>
+                </div>
             </div>
             <div class="body">
                 <div class="weather-info">
@@ -23,14 +27,20 @@
                         <div></div>
                     </h1>
                     <div class="details">
-                        <div id="temp"></div>
+                        <div class="temp-and-extra">
+                            <div id="temp"></div>
+                            <div class="extra">
+                                <div id="feels-like"></div>
+                                <div id="chance-of-rain"></div>
+                                <div id="wind"></div>
+                            </div>
+                        </div>
                         <div id="condition"></div>
                         <div class="high-low">
                             <span id="highest-temp"></span>
                             <span id="lowest-temp"></span>
+                            
                         </div>
-                        <div id="feels-like"></div>
-                        <div id="chance-of-rain"></div>
                     </div>
                 </div>
                 <div class="hourly-forecast">
@@ -173,26 +183,29 @@
                 </div>
                 <div class="days-forecast">
                     <h1>3 day forecast</h1>
-                    <div class="today">
-                        <div></div>
-                        <div></div>
-                        <img src="" alt="Today's condition icon">
-                        <div></div>
-                    </div>
-                    <div class="tomorrow">
-                        <div></div>
-                        <div></div>
-                        <img src="" alt="Tomorrow's condition icon">
-                        <div></div>
-                    </div>
-                    <div class="day-after-tomorrow">
-                        <div></div>
-                        <div></div>
-                        <img src="" alt="Day after tomorrow condition icon">
-                        <div></div>
+                    <div class="forecast">
+                        <div class="today">
+                            <div>Today</div>
+                            <div></div>
+                            <img src="" alt="Today's condition icon">
+                            <div></div>
+                        </div>
+                        <div class="tomorrow">
+                            <div></div>
+                            <div></div>
+                            <img src="" alt="Tomorrow's condition icon">
+                            <div></div>
+                        </div>
+                        <div class="day-after-tomorrow">
+                            <div></div>
+                            <div></div>
+                            <img src="" alt="Day after tomorrow condition icon">
+                            <div></div>
+                        </div>
                     </div>
                 </div>
             </div>
+            <span class="credit"><div>Powered by <a href="https://www.weatherapi.com/" title="Free Weather API">WeatherAPI.com</a></div>|<div class="photo-credit"></div></span>
         </div>
     </body>
 </html>
