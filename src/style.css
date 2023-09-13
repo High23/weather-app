@@ -1,5 +1,5 @@
 html, body, .content {
-    height: 100%;
+    height: 100vh;
     margin: 0;
     padding: 0;
     font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
@@ -8,11 +8,15 @@ html, body, .content {
 .content {
     display: grid;
     grid-template-rows: auto 1fr;
+    background-size: cover;
 }
 
 .header { 
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+    background-color: #393959;
 }
 
 .body {
@@ -23,6 +27,8 @@ html, body, .content {
     display: grid;
     grid-template-columns: repeat(3, auto);
     grid-template-rows: auto 1fr;
+    align-items: center;
+    padding-bottom: 40px;
 }
 
 .days-forecast > h1 {
@@ -32,11 +38,16 @@ html, body, .content {
 .hourly-forecast, .days-forecast, .weather-info {
     padding-left: 100px;
     padding-right: 50px;
+    gap: 30px;
+    background-color: #212121a6;
+    color: white;
 }
 
 .details {
     padding-left: 15px;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
+    display: grid;
+    row-gap: 6px;
 }
 
 #location > div {
@@ -44,15 +55,33 @@ html, body, .content {
     font-size: 0.8rem;
 }
 
+#location {
+    display: grid;
+    gap: 4px;
+}
+
 #temp {
     font-size: 5rem;
+    height: 100%;
+}
+
+#highest-temp, 
+#lowest-temp {
+    display: flex;
+    align-items: center;
+}
+
+#highest-temp > img, 
+#lowest-temp > img {
+    height: 28px;
 }
 
 .icon {
     height: 22px;
 }
 
-.details > div {
+.details > div,
+.extra > div {
     display: flex;
     align-items: center;
     gap: 5px;
@@ -60,6 +89,8 @@ html, body, .content {
 
 div.high-low {
     gap: 20px;
+    grid-column: 1 / 2;
+    grid-row: 3 / 4;
 }
 
 .hours {
@@ -74,16 +105,27 @@ div.high-low {
 .hourly-forecast {
     display: grid;
     grid-template-rows: auto 1fr auto;
+    gap: 30px;
 }
 
 .hour-details {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-evenly;
+}
+
+.hour-details > span {
+    padding-left: 7px;
+    padding-top: 5px;
+}
+
+.hour-details > span:first-child {
+    padding-left: 3px;
 }
 
 .condition-icon {
-    width: 34px;
+    width: 40px;
 }
 
 .slider {
@@ -91,10 +133,11 @@ div.high-low {
     justify-content: center;
     align-items: center;
     gap: 8px;
+    width: clamp(800px, 100%, 1400px);
 }
 
 .filled {
-    background-color: #000;
+    background-color: #fff;
     transition: all 1s ease-in-out;
 }
 
@@ -145,6 +188,103 @@ div.high-low {
     display: inline-block;
     width: 5px;
     height: 5px;
-    border: 1px solid black;
+    border: 1px solid white;
     border-radius: 50%;
+}
+
+
+.today,
+.tomorrow,
+.day-after-tomorrow {
+    display: grid;
+    justify-items: center;
+}
+
+.forecast {
+    display: flex;
+    justify-content: space-around;
+    width: clamp(460px, 100%, 725px) ;
+    grid-column: 1/4;
+}
+
+.credit {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+    background-color: #3f3f46;
+    color: white;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    color: green;
+}
+
+a:hover {
+    color: blue;
+    text-decoration: underline;
+}
+
+.light {
+    color: white;
+}
+
+#condition {
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+}
+
+#feels-like {
+    grid-row: 2/3;
+}
+
+#chance-of-rain {
+    grid-row: 3 / 4;
+}
+
+div.extra {
+    display: grid;
+    gap: 8px;
+    padding-top: 6px;
+    font-size: 1.2rem;
+}
+
+div.temp-and-extra {
+    gap: 120px;
+}
+
+input[type=search], #search-location {
+    appearance: none;
+    border: 1px solid black;
+    padding: 3px 5px;
+    border-radius: 6px;
+    outline: none;
+}
+
+label {
+    font-size: 1.3em;
+}
+
+form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+}
+
+input[type=search]:hover  {
+    border: 2px solid black;
+}
+
+#search-location {
+    background-color: #3b82f6;
+    color: white;
+    padding: 5px 8px;
+    border: none;
+}
+
+#search-location:active {
+    background-color: #2563eb;
 }
