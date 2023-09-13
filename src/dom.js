@@ -1,6 +1,8 @@
 import { format } from 'date-fns';
 import { getForecast } from './app';
 
+export {loadCurrentWeather, load3DayForecast, loadHourlyForecast, loadBackgroundImage}
+
 
 const searchLocationBTN = document.getElementById('search-location');
 searchLocationBTN.addEventListener('click' , () => {
@@ -14,33 +16,40 @@ searchLocationBTN.addEventListener('click' , () => {
     });
 });
 
-function loadCurrentWeather(weather) {
+function loadCurrentWeather(weather, degree='f', windType='mph') {
     const locationSpan = document.querySelector('#location > span');
     locationSpan.textContent = `${weather.location.name}, ${weather.location.region}`;
+    locationSpan.setAttribute('data-location', weather.location.name);
+
     const lastUpdatedDiv = document.querySelector('#location > div');
     lastUpdatedDiv.textContent = `Last updated: ${format(new Date(weather.current.last_updated), 'K:mm bbbb')}`;
 
     const tempDiv = document.getElementById('temp');
-    tempDiv.textContent = `${weather.current.temp_f}\u00B0F`;
+    const temp = `temp_${degree}`;
+    tempDiv.textContent = `${weather.current[[temp]]}\u00B0${degree.toUpperCase()}`;
 
     const conditionDiv = document.getElementById('condition');
     conditionDiv.innerHTML = `<img src="${weather.current.condition.icon}" alt="condition icon" class="condition-icon"> ${weather.current.condition.text}`;
 
     const highestTempSpan = document.getElementById('highest-temp');
-    highestTempSpan.innerHTML = `<img src="../src/icons/arrow-up-thin.svg" alt="Arrow pointing up">${weather.forecast.forecastday[0].day.maxtemp_f}\u00B0F`;
+    const maxTemp = `maxtemp_${degree}`;
+    highestTempSpan.innerHTML = `<img src="../src/icons/arrow-up-thin.svg" alt="Arrow pointing up">${weather.forecast.forecastday[0].day[[maxTemp]]}\u00B0${degree.toUpperCase()}`;
     
     const lowestTempSpan = document.getElementById('lowest-temp');
-    lowestTempSpan.innerHTML = `<img src="../src/icons/arrow-down-thin.svg" alt="Arrow pointing down">${weather.forecast.forecastday[0].day.mintemp_f}\u00B0F`;
+    const minTemp = `mintemp_${degree}`;
+    lowestTempSpan.innerHTML = `<img src="../src/icons/arrow-down-thin.svg" alt="Arrow pointing down">${weather.forecast.forecastday[0].day[[minTemp]]}\u00B0${degree.toUpperCase()}`;
 
     const feelsLikeDiv = document.getElementById('feels-like');
-    feelsLikeDiv.innerHTML = `<img src="../src/icons/human-handsup.svg" alt="Human with hands up" class="icon">${weather.current.feelslike_f}\u00B0`;
+    const feelsLikeTemp = `feelslike_${degree}`;
+    feelsLikeDiv.innerHTML = `<img src="../src/icons/human-handsup.svg" alt="Human with hands up" class="icon">${weather.current[[feelsLikeTemp]]}\u00B0`;
 
     const currentHourForLocation = format(new Date(weather.location.localtime), 'H');
     const chanceOfRain = document.getElementById('chance-of-rain');
     chanceOfRain.innerHTML = `<img src="../src/icons/umbrella.svg" alt="Umbrella icon" class="icon">${weather.forecast.forecastday[0].hour[currentHourForLocation].chance_of_rain}%`;
 
-    const wind = document.getElementById('wind');
-    wind.innerHTML = `<img src="../src/icons/weather-windy.svg" alt="Umbrella icon" class="icon">${weather.current.wind_mph}MPH`;
+    const windDiv = document.getElementById('wind');
+    const wind = `wind_${windType}`;
+    windDiv.innerHTML = `<img src="../src/icons/weather-windy.svg" alt="Umbrella icon" class="icon">${weather.current[[wind]]}${windType.toUpperCase()}`;
 }
 
 function load3DayForecast(forecast) {
@@ -76,10 +85,11 @@ function load3DayForecast(forecast) {
     dayAfterTmrwConditionDiv.textContent = forecast.forecastday[2].day.condition.text;
 }
 
-function loadHourlyForecast(weatherData) {
+function loadHourlyForecast(weatherData, degree='f') {
     const allHourDetailsDivs = document.getElementsByClassName('hour-details');
     const currentHourForLocation = format(new Date(weatherData.location.localtime), 'H');
     weatherData.forecast.forecastday[0].hour.splice(0, currentHourForLocation);
+    const temp = `temp_${degree}`;
 
     const currentDayHours = weatherData.forecast.forecastday[0].hour;
     currentDayHours.forEach((hour, index) => {
@@ -87,12 +97,12 @@ function loadHourlyForecast(weatherData) {
         const hourTempSpan = allHourDetailsDivs[index].childNodes[5];
         if (index === 0) {
             hourIMG.src = hour.condition.icon;
-            hourTempSpan.textContent = `${hour.temp_f}\u00B0`;
+            hourTempSpan.textContent = `${hour[[temp]]}\u00B0`;
         } else {
             const hourSpan = allHourDetailsDivs[index].childNodes[1];
             hourSpan.textContent = format(new Date(hour.time), 'haa');
             hourIMG.src = hour.condition.icon;
-            hourTempSpan.textContent = `${hour.temp_f}\u00B0`;
+            hourTempSpan.textContent = `${hour[[temp]]}\u00B0`;
         }
     });
     
@@ -104,7 +114,7 @@ function loadHourlyForecast(weatherData) {
             const hourTempSpan = allHourDetailsDivs[currentDayHours.length + i].childNodes[5];
             hourSpan.textContent = format(new Date(nextDayHours[i].time), 'haa');
             hourIMG.src = nextDayHours[i].condition.icon;
-            hourTempSpan.textContent = `${nextDayHours[i].temp_f}\u00B0`;
+            hourTempSpan.textContent = `${nextDayHours[i][[temp]]}\u00B0`;
         }
     } 
 } 
@@ -147,7 +157,6 @@ backBTN.addEventListener('click', () => {
         dots[2].classList.add('filled');
     }
 });
-
 
 function loadBackgroundImage(currentWeather) {
     const conditionText = currentWeather.condition.text;
@@ -196,4 +205,27 @@ function loadBackgroundImage(currentWeather) {
         on <a href="https://unsplash.com/photos/bWtd1ZyEy6w?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
         `;
     }
-} 
+}
+
+
+
+const fahrenheitBTN = document.getElementById('fahrenheit');
+fahrenheitBTN.addEventListener('click', () => {
+    const location = document.querySelector('#location > span').dataset.location;
+    const weatherData = getForecast(location);
+    weatherData.then(weather => {
+        loadCurrentWeather(weather);
+        loadHourlyForecast(weather);
+    });
+});
+
+
+const celsiusBTN = document.getElementById('celsius');
+celsiusBTN.addEventListener('click', () => {
+    const location = document.querySelector('#location > span').dataset.location;
+    const weatherData = getForecast(location);
+    weatherData.then(weather => {
+        loadCurrentWeather(weather, 'c', 'kph');
+        loadHourlyForecast(weather, 'c');
+    });
+});
