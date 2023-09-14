@@ -7,12 +7,21 @@ export {loadCurrentWeather, load3DayForecast, loadHourlyForecast, loadBackground
 const searchLocationBTN = document.getElementById('search-location');
 searchLocationBTN.addEventListener('click' , () => {
     const location = document.getElementById('location-input').value;
+    if (location === '') {
+        alert('You forgot to input a city in the search bar!');
+        console.error('You must input an existing city name into the search bar!');
+        return;
+    }
     const weatherData = getForecast(location);
     weatherData.then(weather => {
         loadCurrentWeather(weather);
         loadBackgroundImage(weather.current);
         load3DayForecast(weather.forecast);
         loadHourlyForecast(weather);
+    }).catch(err => {
+        alert( `${location} is not a valid city name.`);
+        console.error(`Oops, you must input a valid city name. You entered '${location}'`);
+        console.error(`Here is the error: ${err}`);
     });
 });
 
@@ -225,4 +234,9 @@ celsiusBTN.addEventListener('click', () => {
         loadCurrentWeather(weather, 'c', 'kph');
         loadHourlyForecast(weather, 'c');
     });
+});
+
+const form = document.querySelector('form');
+form.addEventListener('submit', (event) => {
+    event.preventDefault();
 });
