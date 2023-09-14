@@ -31,7 +31,7 @@ function loadCurrentWeather(weather, degree='f', windType='mph') {
     locationSpan.setAttribute('data-location', weather.location.name);
 
     const lastUpdatedDiv = document.querySelector('#location > div');
-    lastUpdatedDiv.textContent = `Last updated: ${format(new Date(weather.current.last_updated), 'K:mm bbbb')}`;
+    lastUpdatedDiv.textContent = `Last updated: ${format(new Date(weather.current.last_updated), 'K:mm bbbb')} (City time)`;
 
     const tempDiv = document.getElementById('temp');
     const temp = `temp_${degree}`;
